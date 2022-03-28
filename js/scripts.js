@@ -49,3 +49,34 @@ function boldPassage(word, passage) {
   }
  
 }
+let offenseArray = ["biffaroni", "loopdaloop", "zoinks", "muppeteer"];
+let wordString = "<p>";
+let passageArray = passage.split(" ");
+passageArray.forEach(function (element, index) {
+  if (wordMatch(element, word)) {
+    wordString = wordString.concat("<b>" + element + "</b>");
+  }
+  else if (element.includes(word) && element !== word) {
+    newElement = element.replace(word, "<b>" + word + "</b>");
+    wordString = wordString.concat(newElement);
+  }
+  else {
+    wordString = wordString.concat(element);
+  }
+  offensiveArray.forEach(function (off) {
+    if (index !== (passageArray.length - 1 && passageArray.length - 1 !== off)) {
+      wordString = wordString.concat(" ");
+    }
+  });
+});
+return wordString + "</p>";
+$(document).ready(function () {
+  $("#BOLDEN").submit(function (event) {
+    event.preventDefault();
+    let passage = $("#text-passage").val();
+    let word = $("#input1").val();
+    let boldPassage = boldPassage(word, sentence1);
+    let concealBoldPassage = concealOffensiveWord(boldPassage)
+    $("#bolded-passage").html(maskedBoldPassage);
+  });
+});
