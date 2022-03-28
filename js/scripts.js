@@ -12,6 +12,16 @@ $(document).ready(function() {
     }
   });
 });
+$(document).ready(function () {
+  $("#BOLDEN").submit(function (event) {
+    event.preventDefault();
+    let passage = $("#text-passage").val();
+    let word = $("#input1").val();
+    let boldPassage = boldPassage(word, sentence1);
+    let concealBoldPassage = concealOffensiveWord(boldPassage)
+    $("#bolded-passage").html(maskedBoldPassage);
+  });
+});
 
 
 function errorCheck(passage) {
@@ -67,16 +77,8 @@ passageArray.forEach(function (element, index) {
     if (index !== (passageArray.length - 1 && passageArray.length - 1 !== off)) {
       wordString = wordString.concat(" ");
     }
+    return wordString + "</p>";
   });
 });
-return wordString + "</p>";
-$(document).ready(function () {
-  $("#BOLDEN").submit(function (event) {
-    event.preventDefault();
-    let passage = $("#text-passage").val();
-    let word = $("#input1").val();
-    let boldPassage = boldPassage(word, sentence1);
-    let concealBoldPassage = concealOffensiveWord(boldPassage)
-    $("#bolded-passage").html(maskedBoldPassage);
-  });
-});
+
+
